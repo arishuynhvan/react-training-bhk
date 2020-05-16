@@ -97,27 +97,34 @@ npx react-native <command>
 ```
 ## Create a new application
 
-For example, let's name the project ```elearning```. 
-```
+For example, if the project name is ```elearning```, type 
+
+```bash
 npx react native init elearning
 ```
 
 **Note**
 The project name must be alphanumeric only!
 
-**Run instructions for iOS:**
+**Run React Native**
+
+```bash
+npx react-native start
+```
+
+**Instructions for emulating on iOS:**
     • ```cd "/mnt/DATA/Official Job/ReactTrainingBHK/elearning" && npx react-native run-ios```
     - or -
     • ```Open elearning/ios/elearning.xcodeproj in Xcode``` or ```run "xed -b ios"```
     • Hit the Run button
 
-**Run instructions for Android:**
+**Instructions for emulating on Android:**
     • Have an Android emulator running (quickest way to get started), or a device connected.
     • ```cd "/mnt/DATA/Official Job/ReactTrainingBHK/elearning" && npx react-native run-android```
 
 #### Troubleshooting
 
-**Loading ...**
+**App hangs at Loading ...**
 
 If there are no errors shown in node terminal or console, there is a high chance that the error was caused first by watchman (often shown as error and terminated during the first problematic run)
 
