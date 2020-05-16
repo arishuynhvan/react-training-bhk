@@ -6,6 +6,8 @@ Based on [React Native - The practical Guide 2020](https://www.udemy.com/course/
 
 ## Feature
 
+- [x] Add new goal 
+- [x] Display goal list
 - [ ] Hold and slide (left or right) to delete 
 - [ ] Short press to edit
 - [ ] Add mode
