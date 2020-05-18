@@ -18,7 +18,7 @@ const GoalInput = (props) => {
     props.addModeHandler(false);
   };
   return (
-    <Modal visible={props.isAddMode}>
+    <Modal visible={props.isAddMode} animationType={'slide'}>
       <View style={styles.addGoalContainer}>
         <TextInput placeholder="Write your goal here" style={styles.input} onChangeText={goalInputHandler} value={newGoal} />
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '60%' }}>

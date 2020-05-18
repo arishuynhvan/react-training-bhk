@@ -21,3 +21,4 @@ Based on [React Native - The practical Guide 2020](https://www.udemy.com/course/
 
 ## Demo
 
+![Todo app version 1](images/todo-app-v0.1.gif)
