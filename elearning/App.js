@@ -21,17 +21,21 @@ import GoalItem from './components/GoalItem';
 const App: () => Reacft$Node = () => {
   const [goalList, setGoalList] = useState([]);
   const [goalIndex, setGoalIndex] = useState(0);
-  const addGoalHandler = (goal) =>{
-    setGoalIndex(goalIndex => goalIndex+1);
-    setGoalList((goalList) => [...goalList, {key: goalIndex.toString(), value: goal}]);
+  const addGoalHandler = (goal) => {
+    setGoalIndex(goalIndex => goalIndex + 1);
+    setGoalList((goalList) => [...goalList, { key: goalIndex.toString(), value: goal }]);
+  };
+  const deleteGoalHandler = (goalId) => {
+    setGoalList(goalList.filter(goal => goal.key !== goalId));
   };
   return (
     <View style={styles.screen}>
-      <GoalInput onAddGoal = {addGoalHandler}/>
-      <View>
-      <FlatList data = {goalList}
-        renderItem = {(itemData) => <GoalItem id={itemData.item.key} title={itemData.item.value} />}
-      />
+      <GoalInput onAddGoal={addGoalHandler} />
+      <View >
+        <FlatList data={goalList}
+          renderItem={(itemData) => <GoalItem id={itemData.item.key}
+            title={itemData.item.value} onDeleteGoal={deleteGoalHandler} />}
+        />
       </View>
     </View>
   );
