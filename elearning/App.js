@@ -13,6 +13,7 @@ import {
   View,
   StyleSheet,
   FlatList,
+  Button,
 } from 'react-native';
 import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
@@ -21,6 +22,7 @@ import GoalItem from './components/GoalItem';
 const App: () => Reacft$Node = () => {
   const [goalList, setGoalList] = useState([]);
   const [goalIndex, setGoalIndex] = useState(0);
+  const [isAddMode, setIsAddMode] = useState(false);
   const addGoalHandler = (goal) => {
     setGoalIndex(goalIndex => goalIndex + 1);
     setGoalList((goalList) => [...goalList, { key: goalIndex.toString(), value: goal }]);
@@ -28,9 +30,14 @@ const App: () => Reacft$Node = () => {
   const deleteGoalHandler = (goalId) => {
     setGoalList(goalList.filter(goal => goal.key !== goalId));
   };
+  const addModeHandler = (isAddMode) => {
+    setIsAddMode(isAddMode);
+  }
   return (
     <View style={styles.screen}>
-      <GoalInput onAddGoal={addGoalHandler} />
+      <Button title="ADD NEW GOAL" onPress={()=>setIsAddMode(true)}
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}/>
+      <GoalInput onAddGoal={addGoalHandler} isAddMode = {isAddMode} addModeHandler = {addModeHandler}/>
       <View >
         <FlatList data={goalList}
           renderItem={(itemData) => <GoalItem id={itemData.item.key}
@@ -43,7 +50,7 @@ const App: () => Reacft$Node = () => {
 
 const styles = StyleSheet.create({
   screen: {
-    padding: 10,
+    padding: 50,
     justifyContent: 'center',
     alignContent: 'center'
   },
