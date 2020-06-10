@@ -130,6 +130,50 @@ If there are no errors shown in node terminal or console, there is a high chance
 
 To fix this, reinstall watchman module (```npm uninstall watchman``` then ```npm install watchman```). If this doesn't work, either debug node modules or just reinstall all node modules in the project. 
 
+## Build apps
+
+### Apk
+
+Install `react-native` globally
+
+```bash
+npm install -g react-native-cli
+```
+Read the output path where react-native is installed. In my case, it's `usr/bin/react-native`, so I type
+
+```bash
+export PATH="usr/bin:$PATH"
+```
+
+Inside the react native project, type 1 of the following 3 commands, depending on react-native version and folder structure. I my case, I have `android/app/build/intermediates/assets`, but not `android/app/src/main/assets`, so I chose the 2nd command
+
+```bash
+#React-Native 0.59
+react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res
+
+#React-Native 0.49.0+
+react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug
+
+#React-Native 0-0.49.0
+react-native bundle --dev false --platform android --entry-file index.android.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug
+```
+
+To build the `apk` file,
+
+```bash
+$ cd android
+#Create debug build:
+$ ./gradlew assembleDebug
+#Create release build:
+$ ./gradlew assembleRelease #Generated `apk` will be located at `android/app/build/outputs/apk
+```
+
+
+
 ## Further readings
 
 [React Native limitations](https://www.simform.com/react-native-limitations-app-development/)
+
+[Build and Install unsigned apk on device without the development server?](https://stackoverflow.com/questions/35283959/build-and-install-unsigned-apk-on-device-without-the-development-server)
+
+[Signed APK](https://reactnative.dev/docs/signed-apk-android)
