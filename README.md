@@ -128,8 +128,10 @@ npx react-native start
     • Hit the Run button
 
 **Instructions for emulating on Android:**
+
     • Have an Android emulator running (quickest way to get started), or a device connected.
-    • ```cd "/mnt/DATA/Official Job/ReactTrainingBHK/elearning" && npx react-native run-android```
+
+```cd "/mnt/DATA/Official Job/ReactTrainingBHK/elearning" && npx react-native run-android```
 
 #### Troubleshooting
 
