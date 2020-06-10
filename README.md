@@ -140,9 +140,13 @@ If there are no errors shown in node terminal or console, there is a high chance
 To fix this, reinstall watchman module (```npm uninstall watchman``` then ```npm install watchman```). If this doesn't work, either debug node modules or just reinstall all node modules in the project. 
 
 **Watchman iNotify exceeded limits**
+
 Sometimes this will go away after android emulator starts running, but if this doesn't, run
+
 ```echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p```
+
 [Source](https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers)
+
 [Past issue](https://github.com/facebook/watchman/issues/163)
 
 ## Build apps
