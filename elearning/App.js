@@ -10,13 +10,13 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-
-import {
-} from 'react-native/Libraries/NewAppScreen';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import MealsNavigator from './navigation/MealsNavigator'; 
 
 const App: () => React$Node = () => {
   return (
-    <View></View>
+    <NavigationContainer><MealsNavigator/></NavigationContainer>
   );
 };
 
