@@ -113,9 +113,18 @@ npx react-native start
 ```
 
 **Instructions for emulating on iOS:**
-    • ```cd "/mnt/DATA/Official Job/ReactTrainingBHK/elearning" && npx react-native run-ios```
+
+```cd "/mnt/DATA/Official Job/ReactTrainingBHK/elearning" && npx react-native run-ios```
+
     - or -
-    • ```Open elearning/ios/elearning.xcodeproj in Xcode``` or ```run "xed -b ios"```
+    
+ ```Open elearning/ios/elearning.xcodeproj in Xcode``` 
+ 
+    - or -
+ 
+ ```run "xed -b ios"```
+
+
     • Hit the Run button
 
 **Instructions for emulating on Android:**
@@ -129,6 +138,12 @@ npx react-native start
 If there are no errors shown in node terminal or console, there is a high chance that the error was caused first by watchman (often shown as error and terminated during the first problematic run)
 
 To fix this, reinstall watchman module (```npm uninstall watchman``` then ```npm install watchman```). If this doesn't work, either debug node modules or just reinstall all node modules in the project. 
+
+**Watchman iNotify exceeded limits**
+Sometimes this will go away after android emulator starts running, but if this doesn't, run
+```echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p```
+[Source](https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers)
+[Past issue](https://github.com/facebook/watchman/issues/163)
 
 ## Build apps
 
