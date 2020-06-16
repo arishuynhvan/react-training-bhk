@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, FlatList, StyleSheet, Button} from 'react-native';
 import {MEALS} from '../data/dummy-data';
-import {FlatList, TextInput} from 'react-native-gesture-handler';
+import MealItem from '../components/MealItem';
 
 const CategoryMealsScreen = props => {
   const displayedMeals = MEALS.filter(
@@ -9,14 +9,23 @@ const CategoryMealsScreen = props => {
   );
   const renderMealItem = itemData => {
     return (
-      <View>
-        <Text>{itemData.item.title}</Text>
-      </View>
+      <MealItem
+        onSelectMeal={() => {}}
+        title={itemData.item.title}
+        duration={itemData.item.duration}
+        affordability={itemData.item.affordability}
+        complexity={itemData.item.complexity}
+        image = {itemData.item.imageUrl}
+      />
     );
   };
   return (
     <View style={styles.screen}>
-      <FlatList data={displayedMeals} renderItem={renderMealItem} />
+      <FlatList
+        data={displayedMeals}
+        renderItem={renderMealItem}
+        style={{width: '100%'}}
+      />
     </View>
   );
 };
