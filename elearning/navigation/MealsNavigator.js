@@ -10,33 +10,38 @@ import {CATEGORIES} from '../data/dummy-data';
 const Stack = createStackNavigator();
 function MealsNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor:
+            Platform.OS === 'android' ? Colors.primaryColor : 'white',
+        },
+        headerTintColor:
+          Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+      }}>
       <Stack.Screen
         name="Categories"
         component={CategoriesScreen}
         options={{
           title: 'Meal Categories',
-          headerTitleAlign: 'center',
-          headerStyle: {
-            backgroundColor:
-              Platform.OS === 'android' ? Colors.primaryColor : 'white',
-          },
-          headerTintColor:
-            Platform.OS === 'android' ? 'white' : Colors.primaryColor,
         }}
       />
       <Stack.Screen
         name="Category Meals"
         component={CategoryMealsScreen}
         options={navigationdata => {
-          const selectedCategory = CATEGORIES.find(({id}) => id === navigationdata.route.params.itemId)
+          const selectedCategory = CATEGORIES.find(
+            ({id}) => id === navigationdata.route.params.itemId,
+          );
           return {
             title: navigationdata.route.params.itemTitle,
-            headerTitleAlign: 'center',
             headerStyle: {
-            backgroundColor:
-              Platform.OS === 'android' ? selectedCategory.color : 'white',
-          }
+              backgroundColor:
+                Platform.OS === 'android' ? selectedCategory.color : 'white',
+            },
+            headerTintColor:
+              Platform.OS === 'android' ? 'black' : selectedCategory.color,
           };
         }}
       />
