@@ -14,28 +14,26 @@ import {CATEGORIES, MEALS} from '../data/dummy-data';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import CustomHeaderButton from '../components/HeaderButton';
 
+const defaultStackScreenOptions = {
+  headerTitleAlign: 'center',
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white',
+  },
+  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+};
 
-const Stack = createStackNavigator();
+const MealStack = createStackNavigator();
 function MealsNavigator() {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerTitleAlign: 'center',
-        headerStyle: {
-          backgroundColor:
-            Platform.OS === 'android' ? Colors.primaryColor : 'white',
-        },
-        headerTintColor:
-          Platform.OS === 'android' ? 'white' : Colors.primaryColor,
-      }}>
-      <Stack.Screen
+    <MealStack.Navigator screenOptions={defaultStackScreenOptions}>
+      <MealStack.Screen
         name="Categories"
         component={CategoriesScreen}
         options={{
           title: 'Meal Categories',
         }}
       />
-      <Stack.Screen
+      <MealStack.Screen
         name="Category Meals"
         component={CategoryMealsScreen}
         options={navigationdata => {
@@ -53,7 +51,7 @@ function MealsNavigator() {
           };
         }}
       />
-      <Stack.Screen
+      <MealStack.Screen
         name="Meal Detail"
         component={MealDetailScreen}
         options={navigationData => {
@@ -75,10 +73,23 @@ function MealsNavigator() {
           };
         }}
       />
-    </Stack.Navigator>
+    </MealStack.Navigator>
   );
 }
 
+const FavStack = createStackNavigator();
+function FavStackNavigator() {
+  return (
+    <FavStack.Navigator screenOptions={defaultStackScreenOptions}>
+      <FavStack.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={{title: 'Your Favorites'}}
+      />
+      <FavStack.Screen name="MealDetail" component={MealDetailScreen} />
+    </FavStack.Navigator>
+  );
+}
 
 const Tab =
   Platform.OS === 'android'
@@ -108,12 +119,13 @@ function MainNavigator() {
               <IonIcons name="ios-restaurant" size={25} color={tabInfo.color} />
             );
           },
-          tabBarColor: Platform.OS === 'android' ? Colors.accentColor : 'white',
+          tabBarColor:
+            Platform.OS === 'android' ? Colors.primaryColor : 'white',
         }}
       />
       <Tab.Screen
         name="Favorites"
-        component={FavoritesScreen}
+        component={FavStackNavigator}
         options={{
           tabBarIcon: tabInfo => {
             return Platform.OS === 'android' ? (
