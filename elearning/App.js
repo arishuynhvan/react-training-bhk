@@ -12,13 +12,13 @@ import {
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import {enableScreens} from 'react-native-screens';
-import MealsFavTabNavigator from './navigation/MealsFavTabNavigator';
+import MainNavigator from './navigation/MainNavigator';
 
 enableScreens();
 
 const App: () => React$Node = () => {
   return (
-    <NavigationContainer><MealsFavTabNavigator/></NavigationContainer>
+    <NavigationContainer><MainNavigator/></NavigationContainer>
   );
 };
 
