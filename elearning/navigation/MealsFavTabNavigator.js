@@ -16,8 +16,8 @@ const Tab =
 function MealsFavTabNavigator() {
   return (
     <Tab.Navigator
-      barStyle={{backgroundColor: Colors.accentColor}}
-      activeColor="white"
+      shifting={true}
+      activeColor={Platform.OS === 'android' ? 'white' : Colors.accentColor}
       tabBarOptions={{
         activeTintColor: Colors.accentColor,
       }}>
@@ -27,11 +27,16 @@ function MealsFavTabNavigator() {
         options={{
           tabBarIcon: tabInfo => {
             return Platform.OS === 'android' ? (
-              <MaterialIcons name="restaurant-menu" size={25} color={tabInfo.color}  />
+              <MaterialIcons
+                name="restaurant-menu"
+                size={25}
+                color={tabInfo.color}
+              />
             ) : (
               <IonIcons name="ios-restaurant" size={25} color={tabInfo.color} />
             );
           },
+          tabBarColor: Platform.OS === 'android' ? Colors.primaryColor : 'white',
         }}
       />
       <Tab.Screen
@@ -40,10 +45,12 @@ function MealsFavTabNavigator() {
         options={{
           tabBarIcon: tabInfo => {
             return Platform.OS === 'android' ? (
-              <IonIcons name="ios-heart" size={25} color={tabInfo.color}  />
+              <IonIcons name="ios-heart" size={25} color={tabInfo.color} />
             ) : (
               <IonIcons name="ios-star" size={25} color={tabInfo.color} />
-            );          },
+            );
+          },
+          tabBarColor: Platform.OS === 'android' ? Colors.accentColor : 'white',
         }}
       />
     </Tab.Navigator>
