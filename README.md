@@ -96,6 +96,25 @@ Follow the installation guides for iOS and Android separately
 ```bash
 npm install --save @react-navigation/bottom-tabs
 ```
+```JS
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+```
+
+#### [Add react-navigation/material-bottom-tabs](https://reactnavigation.org/docs/material-bottom-tab-navigator/)
+
+```bash
+npm install @react-navigation/material-bottom-tabs react-native-paper
+```
+
+```JS
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+```
+
+**Note**
+
+*Warnings for react-native-paper*
+
+Require cycles are allowed, but can result in uninitialized values. Consider refactoring to remove the need for a cycle.
 
 ### Troubleshooting
 
