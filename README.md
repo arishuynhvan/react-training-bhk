@@ -10,7 +10,7 @@
 
 ### Todo
 
-- [ ] Use react navigation v5 to control screens
+- [x] Use react navigation v5 to control screens
 - [ ] Add demo
 
 ### Setup
@@ -50,6 +50,44 @@ export default function App() {
 ```bash
 npm install @react-navigation/stack
 ```
+
+#### [Add react-navigation-header-buttons](https://github.com/vonovak/react-navigation-header-buttons)
+
+```bash
+npm install --save react-navigation-header-buttons
+```
+
+1. Create a customized headerbutton component, remember to add `{...props}`
+2. Import at least `{HeaderButton, Item}` from the module
+
+```JS
+<HeaderButtons HeaderButtonComponent={YourCustomHeaderButtonComponent}>
+  <Item title="some_string" otherPropsInDocumentation/>
+<HeaderButtons>
+``` 
+
+#### [Add react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
+
+**Bundled Icon Sets**
+
+[Browse all](https://oblador.github.io/react-native-vector-icons/)
+
+    AntDesign by AntFinance 
+    Entypo by Daniel Bruce 
+    EvilIcons by Alexander Madyankin & Roman Shamin 
+    Feather by Cole Bemis & Contributors
+    FontAwesome by Dave Gandy
+    FontAwesome 5 by Fonticons, Inc.
+    Fontisto by Kenan Gündoğan 
+    Foundation by ZURB, Inc. 
+    Ionicons by Ben Sperry 
+    MaterialIcons by Google, Inc. 
+    MaterialCommunityIcons by MaterialDesignIcons.com 
+    Octicons by Github, Inc. 
+    Zocial by Sam Collins 
+    SimpleLineIcons by Sabbir & Contributors 
+
+Follow the installation guide for iOS and Android separately
 
 ### Troubleshooting
 

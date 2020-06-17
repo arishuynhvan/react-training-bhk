@@ -6,6 +6,8 @@ import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 import Colors from '../constants/Colors';
 import {CATEGORIES, MEALS} from '../data/dummy-data';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import CustomHeaderButton from '../components/HeaderButton';
 
 const Stack = createStackNavigator();
 function MealsNavigator() {
@@ -53,7 +55,18 @@ function MealsNavigator() {
           const selectedMeal = MEALS.find(({id}) => id === mealId);
           return {
             headerTitle: selectedMeal.title,
-          }
+            headerRight: () => (
+              <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                <Item
+                  title="Fav"
+                  iconName="ios-star"
+                  onPress={() => {
+                    console.log('Mark as favorite!');
+                  }}
+                />
+              </HeaderButtons>
+            ),
+          };
         }}
       />
     </Stack.Navigator>
