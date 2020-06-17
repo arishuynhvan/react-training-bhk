@@ -73,4 +73,5 @@ function MealsNavigator() {
   );
 }
 
+
 export default MealsNavigator;

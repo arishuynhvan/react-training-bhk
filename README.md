@@ -6,7 +6,7 @@
 
 [App mockup](images/app-plan-meals-app.png)
 
-[Source](https://www.udemy.com/course/react-native-the-practical-guide/)
+[Source](https://www.udemy.com/course/react-native-the-practical-guide/), but this implementation uses the vanilla **react-native-cli** (or bare) workflow and **React Navigation v5**.
 
 ### Todo
 
@@ -14,6 +14,8 @@
 - [ ] Add demo
 
 ### Setup
+
+The following components should have been included inside the project, but if they have not, please follow the setup steps below and in their respective documentation
 
 #### Add fonts
 
@@ -87,7 +89,13 @@ npm install --save react-navigation-header-buttons
     Zocial by Sam Collins 
     SimpleLineIcons by Sabbir & Contributors 
 
-Follow the installation guide for iOS and Android separately
+Follow the installation guides for iOS and Android separately
+
+#### [Add react-navigation/bottom-tabs](https://reactnavigation.org/docs/tab-based-navigation/)
+
+```bash
+npm install --save @react-navigation/bottom-tabs
+```
 
 ### Troubleshooting
 
