@@ -12,6 +12,7 @@
 
 - [x] Use react navigation v5 to control screens
 - [ ] Add demo
+- [ ] Build apk
 
 ### Setup
 
@@ -103,7 +104,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 #### [Add react-navigation/material-bottom-tabs](https://reactnavigation.org/docs/material-bottom-tab-navigator/)
 
 ```bash
-npm install @react-navigation/material-bottom-tabs react-native-paper
+npm install --save @react-navigation/material-bottom-tabs react-native-paper
 ```
 
 ```JS
@@ -115,6 +116,26 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 *Warnings for react-native-paper*
 
 Require cycles are allowed, but can result in uninitialized values. Consider refactoring to remove the need for a cycle.
+
+#### [Add react-navigation/drawer](https://reactnavigation.org/docs/drawer-navigator)
+
+```bash
+npm install --save @react-navigation/drawer
+```
+
+```JS
+import { createDrawerNavigator } from '@react-navigation/drawer';
+```
+
+#### [Add react-navigation/material-top-tabs](https://reactnavigation.org/docs/material-top-tab-navigator/)
+
+```bash
+npm install --save  @react-navigation/material-top-tabs react-native-tab-view
+```
+
+```JS
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+```
 
 ### Troubleshooting
 
