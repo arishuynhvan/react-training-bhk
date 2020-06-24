@@ -128,8 +128,9 @@ function FiltersStackNavigator() {
                   title="Save"
                   iconName="save"
                   onPress={() => {
+                    navigationdata.route.params.save();
                     //console.log(navigationdata.route.params);
-                    console.log('You pressed Save!');
+                    //console.log('You pressed Save!');
                   }}
                 />
               </HeaderButtons>

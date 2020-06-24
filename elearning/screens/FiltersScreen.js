@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {View, Text, StyleSheet, Switch, Platform} from 'react-native';
 import Colors from '../constants/Colors';
 
@@ -17,12 +17,13 @@ const FilterSwitch = props => {
 };
 
 const FiltersScreen = props => {
+  const {navigation} = props;
   const [isGlutenFree, setIsGlutenFree] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
 
-  const saveFilters=()=> {
+  const saveFilters=useCallback(()=> {
       const appliedFilters = {
           glutenFree:isGlutenFree,
           lactoseFree:isLactoseFree,
@@ -30,14 +31,14 @@ const FiltersScreen = props => {
           isVegetarian:isVegetarian
       }
       console.log(appliedFilters);
-  }
+  }, [isGlutenFree,isLactoseFree,isVegan,isVegetarian]);
 
-  // TODO: pass filter data to different screens
-  // Read more https://reactnavigation.org/docs/troubleshooting/#i-get-the-warning-non-serializable-values-were-found-in-the-navigation-state
-  /*useEffect(()=>{
+  // TODO: Fix warning about non-serializable values
+  // https://reactnavigation.org/docs/troubleshooting/#i-get-the-warning-non-serializable-values-were-found-in-the-navigation-state
+  useEffect(()=>{
       //save a pointer to the object (functor?) saveFilters but not executing this function
       props.navigation.setParams({save:saveFilters});
-  },[saveFilters]);*/
+  },[saveFilters, navigation]);
 
   return (
     <View style={styles.screen}>
