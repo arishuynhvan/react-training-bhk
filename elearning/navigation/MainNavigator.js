@@ -118,7 +118,24 @@ function FiltersStackNavigator() {
       <FiltersStack.Screen
         name="Filters"
         component={FiltersScreen}
-        options={{title: 'Filter Meals'}}
+        options={navigationdata => {
+          return {
+            title: 'Filter Meals',
+            headerLeft: renderMenuButton.bind(this, navigationdata),
+            headerRight: () => (
+              <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                <Item
+                  title="Save"
+                  iconName="save"
+                  onPress={() => {
+                    //console.log(navigationdata.route.params);
+                    console.log('You pressed Save!');
+                  }}
+                />
+              </HeaderButtons>
+            ),
+          };
+        }}
       />
     </FiltersStack.Navigator>
   );
@@ -177,10 +194,10 @@ function TabNavigator() {
 const Drawer = createDrawerNavigator();
 function MainNavigator() {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Favorite Meals" component={TabNavigator} />
+    <Drawer.Navigator drawerContentOptions={{activeTintColor:Colors.accentColor}}>
+      <Drawer.Screen name="MealFavs" component={TabNavigator} options={{drawerLabel:'Meals'}} />
       <Drawer.Screen name="Filters" component={FiltersStackNavigator} />
     </Drawer.Navigator>
   );
-}
+} 
 export default MainNavigator;

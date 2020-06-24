@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableNativeFeedback,
   Platform,
+  Dimensions,
 } from 'react-native';
 
 const CategoryGridTile = props => {
@@ -61,7 +62,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'OpenSans-Bold',
-    fontSize: 20,
+    fontSize:
+      Dimensions.get('window').width < 350
+        ? 12
+        : Dimensions.get('window').width < 400
+        ? 15
+        : 20,
     textAlign: 'right',
   },
 });
