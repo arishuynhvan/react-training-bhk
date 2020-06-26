@@ -11,7 +11,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
-import {CATEGORIES, MEALS} from '../data/dummy-data';
+import {CATEGORIES} from '../data/dummy-data';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import CustomHeaderButton from '../components/HeaderButton';
 import FiltersScreen from '../screens/FiltersScreen';
@@ -23,7 +23,7 @@ const defaultStackScreenOptions = {
   },
   headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
 };
-const renderMenuButton = (navigationdata) => (
+const renderMenuButton = navigationdata => (
   <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
     <Item
       title="Filters"
@@ -70,18 +70,15 @@ function MealsNavigator() {
         name="Meal Detail"
         component={MealDetailScreen}
         options={navigationData => {
-          const mealId = navigationData.route.params.mealId;
-          const selectedMeal = MEALS.find(({id}) => id === mealId);
+          const {toggleFav,isFav} = navigationData.route.params;
           return {
-            headerTitle: selectedMeal.title,
+            headerTitle: navigationData.route.params.mealTitle,
             headerRight: () => (
               <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
                 <Item
                   title="Fav"
-                  iconName="star"
-                  onPress={() => {
-                    console.log('Mark as favorite!');
-                  }}
+                  iconName={isFav ? 'star' : 'star-border'}
+                  onPress={toggleFav}
                 />
               </HeaderButtons>
             ),
@@ -129,8 +126,6 @@ function FiltersStackNavigator() {
                   iconName="save"
                   onPress={() => {
                     navigationdata.route.params.save();
-                    //console.log(navigationdata.route.params);
-                    //console.log('You pressed Save!');
                   }}
                 />
               </HeaderButtons>
@@ -195,10 +190,15 @@ function TabNavigator() {
 const Drawer = createDrawerNavigator();
 function MainNavigator() {
   return (
-    <Drawer.Navigator drawerContentOptions={{activeTintColor:Colors.accentColor}}>
-      <Drawer.Screen name="MealFavs" component={TabNavigator} options={{drawerLabel:'Meals'}} />
+    <Drawer.Navigator
+      drawerContentOptions={{activeTintColor: Colors.accentColor}}>
+      <Drawer.Screen
+        name="MealFavs"
+        component={TabNavigator}
+        options={{drawerLabel: 'Meals'}}
+      />
       <Drawer.Screen name="Filters" component={FiltersStackNavigator} />
     </Drawer.Navigator>
   );
-} 
+}
 export default MainNavigator;
