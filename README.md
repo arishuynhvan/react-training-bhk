@@ -4,9 +4,11 @@
 
 ### App Idea
 
-[App mockup](images/app-plan-meals-app.png)
+![App mockup](images/app-plan-meals-app.png)
 
-[Source](https://www.udemy.com/course/react-native-the-practical-guide/), but this implementation uses the vanilla **react-native-cli** (or bare) workflow and **React Navigation v5**.
+[Source](https://www.udemy.com/course/react-native-the-practical-guide/)
+
+This implementation uses the vanilla **react-native-cli** (or bare) workflow and **React Navigation v5**.
 
 ### Todo
 
@@ -143,6 +145,29 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 Compiler error. [Solution](https://stackoverflow.com/questions/46741247/nothing-was-returned-from-render-this-usually-means-a-return-statement-is-missi)
 
+#### Debug Redux
+
+You can debug Redux in React Native apps with help of the [React Native Debugger tool](https://github.com/jhen0409/react-native-debugger/blob/master/docs/redux-devtools-integration.md)
+
+1. Make sure you got the [React Native Debugger](https://github.com/jhen0409/react-native-debugger) installed
+
+2. Enable JS Debugging in the running app (open development overlay via `CTRL + M` / `CMD + M` on Android devices, CMD + D on iOS devices)
+
+3. Install the [redux-devtools-extension package](https://www.npmjs.com/package/redux-devtools-extension) via 
+```
+npm install --save-dev redux-devtools-extension
+```
+
+4. Enable Redux debugging in your code:
+
+```JS
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+ 
+const store = createStore(reducer, composeWithDevTools());
+```
+
+**Important:** Make sure you remove this code when building your app for production!
 
 ### References
 
