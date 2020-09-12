@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Button, Text, StyleSheet, Image, Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import Colors from "../constants/Colors";
 
 const CustomImagePicker = (props) => {
+  const [pickedImage, setPickedImage] = useState();
   const verifyPermissions = async () => {
-    const result = await Permissions.askAsync(Permissions.CAMERA);//Android needs only this
+    const result = await Permissions.askAsync(Permissions.CAMERA, Permissions.CAMERA_ROLL); //Android needs only this
     //iOS needs both permissions for CAMERA and CAMERA_ROLL
-    
+
     if (result.status !== "granted") {
       Alert.alert(
         "Insufficient permissions!",
@@ -19,24 +20,35 @@ const CustomImagePicker = (props) => {
     }
     return true;
   };
-  const takeImageHandler = async () => { 
-      const hasPermission= await verifyPermissions();
-      if(!hasPermission){
-          return;
-      }
-    ImagePicker.launchCameraAsync();
+  const takeImageHandler = async () => {
+    const hasPermission = await verifyPermissions();
+    if (!hasPermission) {
+      return;
+    }
+    const image = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [16, 9],
+      quality: 0.5,
+    });
+    console.log(image.cancelled);
+    setPickedImage(image.uri);
   };
   return (
     <View style={styles.imagePicker}>
       <View style={styles.imagePreview}>
-        <Text>No image picked yet.</Text>
-        <Image style={styles.image} />
-        <Button
+      {console.log(pickedImage)}
+        {!pickedImage ? (
+          <Text>No image picked yet.</Text>
+        ) : (
+          <Image style={styles.image} source={{uri: pickedImage}} />
+        )}
+        
+      </View>
+      <Button
           title="Take image"
           color={Colors.primary}
           onPress={takeImageHandler}
         />
-      </View>
     </View>
   );
 };
@@ -53,7 +65,9 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderWidth: 1,
   },
-  image: {},
+  image: {
+    width: "100%", height: 200
+  },
 });
 
 export default CustomImagePicker;
