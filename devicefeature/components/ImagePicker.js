@@ -7,7 +7,10 @@ import Colors from "../constants/Colors";
 const CustomImagePicker = (props) => {
   const [pickedImage, setPickedImage] = useState();
   const verifyPermissions = async () => {
-    const result = await Permissions.askAsync(Permissions.CAMERA, Permissions.CAMERA_ROLL); //Android needs only this
+    const result = await Permissions.askAsync(
+      Permissions.CAMERA,
+      Permissions.CAMERA_ROLL
+    ); //Android needs only this
     //iOS needs both permissions for CAMERA and CAMERA_ROLL
 
     if (result.status !== "granted") {
@@ -30,31 +33,30 @@ const CustomImagePicker = (props) => {
       aspect: [16, 9],
       quality: 0.5,
     });
-    console.log(image.cancelled);
     setPickedImage(image.uri);
+    props.onImageTaken(image.uri);
   };
   return (
     <View style={styles.imagePicker}>
       <View style={styles.imagePreview}>
-      {console.log(pickedImage)}
         {!pickedImage ? (
           <Text>No image picked yet.</Text>
         ) : (
-          <Image style={styles.image} source={{uri: pickedImage}} />
+          <Image style={styles.image} source={{ uri: pickedImage }} />
         )}
-        
       </View>
       <Button
-          title="Take image"
-          color={Colors.primary}
-          onPress={takeImageHandler}
-        />
+        title="Take image"
+        color={Colors.primary}
+        onPress={takeImageHandler}
+      />
     </View>
   );
 };
 const styles = StyleSheet.create({
   imagePicker: {
     alignItems: "center",
+    marginBottom: 15,
   },
   imagePreview: {
     width: "100%",
@@ -66,7 +68,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   image: {
-    width: "100%", height: 200
+    width: "100%",
+    height: 200,
   },
 });
 

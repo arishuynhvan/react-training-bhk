@@ -9,19 +9,22 @@ const PlaceListScreen = (props) => {
     <FlatList
       data={places}
       keyExtractor={(item) => item.id}
-      renderItem={(itemData) => (
-        <PlaceItem
-          onSelect={() => {
-            props.navigation.navigate("PlaceDetailScreen", {
-              placeTitle: itemData.item.title,
-              placeId: itemData.item.id,
-            });
-          }}
-          image={null}
-          title={itemData.item.title}
-          address={null}
-        />
-      )}
+      renderItem={(itemData) => {
+        return (
+          <PlaceItem
+            img={itemData.item.imageUri}
+            onSelect={() => {
+              props.navigation.navigate("PlaceDetailScreen", {
+                placeTitle: itemData.item.title,
+                placeId: itemData.item.id,
+              });
+            }}
+            image={null}
+            title={itemData.item.title}
+            address={null}
+          />
+        );
+      }}
     />
   );
 };
