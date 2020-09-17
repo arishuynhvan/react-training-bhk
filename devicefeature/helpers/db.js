@@ -32,7 +32,29 @@ export const insertPlace = (title, imageUri, address, lat, lng) => {
         "INSERT INTO places (title, imageUri, address, lat, lng) VALUES (?, ?, ?, ?, ?);",
         [title, imageUri, address, lat, lng],
         (_, result) => {
-          //success case 
+          //success case
+          resolve(result);
+        },
+        (_, err) => {
+          //error case
+          reject(err);
+        }
+      );
+    });
+  });
+  return promise;
+};
+
+export const fetchPlaces = () => {
+  const promise = new Promise((resolve, reject) => {
+    //if some part of a query fails, the entire query rolls back
+    db.transaction((transaction) => {
+      //do not use `` as it's vulnerable to sql injection
+      transaction.executeSql(
+        "SELECT * FROM places;",
+        [],
+        (_, result) => {
+          //success case
           resolve(result);
         },
         (_, err) => {
